@@ -17,23 +17,19 @@ const noteSchema = new mongoose.Schema({
   date: Date,
   important: Boolean,
 })
-
 const Note = mongoose.model('Note', noteSchema)
-
-const search = (filter) => {
-    Note.find({filter}).then(result => {
-
-        mongoose.connection.close()
-        return result;
-    })
-}
-const all_important = () => {
-    Note.find({important: true}).then(result => {
-        mongoose.connection.close()
-        return result;
-    })
-}
-
+// const search = (filter) => {
+//   Note.find({filter}).then(result => {
+//     mongoose.connection.close()
+//     return result
+//   })
+// }
+// const all_important = () => {
+//   Note.find({important: true}).then(result => {
+//     mongoose.connection.close()
+//     return result
+//   })
+// }
 // Note.find({}).then(result => {
 //     result.forEach(note => {
 //       console.log(note)
