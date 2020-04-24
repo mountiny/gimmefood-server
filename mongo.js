@@ -1,23 +1,32 @@
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
-if ( process.argv.length<3 ) {
-  console.log('give password as argument')
-  process.exit(1)
-}
+// if ( process.argv.length<3 ) {
+//   console.log('give password as argument')
+//   process.exit(1)
+// }
 
-const password = process.argv[2]
+// const password = process.argv[2]
 
-const url =
-  `mongodb+srv://mountiny_takeout:${password}@takeout-1t5ya.mongodb.net/takeout?retryWrites=true&w=majority`
+// const url =
+//   `mongodb+srv://mountiny_takeout:${password}@takeout-1t5ya.mongodb.net/takeout?retryWrites=true&w=majority`
 
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
-const noteSchema = new mongoose.Schema({
-  content: String,
-  date: Date,
-  important: Boolean,
-})
-const Note = mongoose.model('Note', noteSchema)
+// const noteSchema = new mongoose.Schema({
+//   content: String,
+//   date: Date,
+//   important: Boolean,
+// })
+
+// const categorySchema = new mongoose.Schema({
+//   name: String,
+//   date: Date,
+//   hidden: Boolean,
+//   order: Number
+// })
+// const Category = mongoose.model('Category', categorySchema)
+
+
 // const search = (filter) => {
 //   Note.find({filter}).then(result => {
 //     mongoose.connection.close()

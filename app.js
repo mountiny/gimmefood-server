@@ -3,9 +3,16 @@ const express = require('express')
 require('express-async-errors')
 const app = express()
 const cors = require('cors')
+
+// Routers
 const notesRouter = require('./controllers/notes')
+const categoriesRouter = require('./controllers/categories')
+const productsRouter = require('./controllers/products')
+const ordersRouter = require('./controllers/orders')
+const orderUnitsRouter = require('./controllers/orderUnits')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
@@ -29,6 +36,10 @@ app.use(middleware.requestLogger)
 
 app.use('/api/users', usersRouter)
 app.use('/api/notes', notesRouter)
+app.use('/api/categories', categoriesRouter)
+app.use('/api/products', productsRouter)
+app.use('/api/orders', ordersRouter)
+app.use('/api/order-units', orderUnitsRouter)
 app.use('/api/login', loginRouter)
 
 if (process.env.NODE_ENV === 'development') {

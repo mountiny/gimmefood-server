@@ -14,6 +14,24 @@ const userSchema = mongoose.Schema({
       ref: 'Note'
     }
   ],
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category'
+    }
+  ],
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order'
+    }
+  ],
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ]
 })
 
 userSchema.set('toJSON', {
