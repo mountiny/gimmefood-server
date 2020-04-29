@@ -1,0 +1,42 @@
+// Colours
+$bg: #fff2e1;
+$tColor: #141412;
+$tHover: #33332e;
+$tLight: #aaa;
+$secondary: #e66d45;
+$bgLight: #ffe7c8;//#fff9f3;
+$coral: #ff6f61;
+
+// Padding
+$pad: 14px;
+
+// Font sizes
+$base-font: 12px;
+$normal: 1.3rem;
+
+// Breakpoints
+
+$mobile-se: 374px;
+$mobile-x: 460px;
+
+$curve: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+h1 {
+  font-size: 4rem;
+  line-height: 4.6rem;
+}
+
+h2 {
+  font-size: 2.8rem;
+  line-height: 3.4rem;
+}
+
+h3 {
+  font-size: 2.2rem;
+  line-height: 3rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
