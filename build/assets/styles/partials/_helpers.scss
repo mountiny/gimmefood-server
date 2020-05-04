@@ -33,6 +33,9 @@
 .h-margin-bottom {
   margin-bottom: 20px;
 }
+.h-display-none {
+  display: none;
+}
 
 .h-pointer {
   cursor: pointer;
@@ -62,8 +65,50 @@
   display: block;
   background-color: $tColor;
   color: $bg;
+  cursor: pointer;
   @include prefix(transition, (background-color 0.3s $curve), webkit ms o);
   &:hover {
     background-color: $tHover;
   }
+}
+.h-btn-padding {
+  padding: 8px $pad;
+}
+.h-full-btn {
+  position: relative;
+  background-color: $tColor;
+  color: $bg;
+  max-width: $cont-width;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  height: 4rem;
+  line-height: 4rem;
+  display: block;
+  width: 100%;
+  margin: $pad auto;
+
+}
+
+.h-block {
+  padding: $pad;
+  display: grid;
+  background-color: $bgLight;
+  color: $tColor;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  border: 2px transparent solid;
+  margin: 8px auto;
+  @include prefix(transition, (border 0.3s $curve, height 0.3s $curve, background-color 0.3s $curve), webkit ms o);
+  &:hover {
+    background-color: $bgLightHover;
+  }
+  &.h-block-open:hover {
+    background-color: $bgLight;
+  }
+  
+}
+.h-invalid {
+  border: 2px solid $no !important
 }

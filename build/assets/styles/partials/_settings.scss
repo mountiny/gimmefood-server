@@ -1,11 +1,33 @@
 // Colours
-$bg: #fff2e1;
-$tColor: #141412;
-$tHover: #33332e;
+
+// Theme 1
+// $bg: #fff2e1;
+// $tColor: #141412;
+// $tHover: #33332e;
+// $tLight: #aaa;
+// $secondary: #e66d45;
+// $bgLight: #ffe7c8;//#fff9f3;
+// $coral: #ff6f61;
+// $signal: #32B67A;
+
+// $yes: #32B67A;
+// $no: #E54B5B;
+
+
+// Theme 2
+$bg: #F1F5F9;
+$tColor: #0F122D;
+$tHover: #767C8A;
 $tLight: #aaa;
-$secondary: #e66d45;
-$bgLight: #ffe7c8;//#fff9f3;
+$secondary: #2774D9;
+$bgLight: #E9EDF0;//#fff9f3;
+$bgLightHover: #D1D5D8;
 $coral: #ff6f61;
+$signal: #32B67A;
+
+$yes: #32B67A;
+$no: #FF545F;
+
 
 // Padding
 $pad: 14px;
@@ -13,6 +35,9 @@ $pad: 14px;
 // Font sizes
 $base-font: 12px;
 $normal: 1.3rem;
+
+// Widths
+$cont-width: 600px;
 
 // Breakpoints
 
@@ -39,4 +64,11 @@ h3 {
 h4 {
   font-size: 1.6rem;
   line-height: 2rem;
+}
+b {
+  font-weight: 700;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,0 +1,37 @@
+.StripeElement--webkit-autofill {
+  background: transparent !important;
+}
+
+.StripeElement {
+  width: 100%;
+  padding: 11px 15px 11px 15px;
+  border: 1px solid $tColor;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+
+.StripeElement {
+  // height: 40px;
+  // padding: 10px 12px;
+  // width: 100%;
+  // color: #32325d;
+  // background-color: white;
+  // border: 1px solid transparent;
+  // border-radius: 4px;
+
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 $tLight;
+}
+
+.StripeElement--invalid {
+  border-color: $no;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
