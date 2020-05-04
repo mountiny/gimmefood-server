@@ -12,6 +12,7 @@ const ordersRouter = require('./controllers/orders')
 const orderUnitsRouter = require('./controllers/orderUnits')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+const stripeRouter = require('./controllers/stripe')
 
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
@@ -41,6 +42,8 @@ app.use('/api/products', productsRouter)
 app.use('/api/orders', ordersRouter)
 app.use('/api/order-units', orderUnitsRouter)
 app.use('/api/login', loginRouter)
+
+app.use('/api/:userSlug/stripe', stripeRouter)
 
 if (process.env.NODE_ENV === 'development') {
   const testingRouter = require('./controllers/testing')

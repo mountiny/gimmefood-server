@@ -22,6 +22,14 @@ const errorHandler = (error, request, response, next) => {
     return response.status(401).json({
       error: 'invalid token'
     })
+  } else if (error.name === 'SignupUsernameError') {
+    return response.status(500).json({
+      error: error.message
+    })
+  } else if (error.name === 'SignupEmailError') {
+    return response.status(500).json({
+      error: error.message
+    })
   }
   logger.error(error.message)
 

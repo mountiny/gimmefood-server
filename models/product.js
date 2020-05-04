@@ -6,12 +6,15 @@ const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
     maxlength: 80
   },
-  description: {
+  description_short: {
     type: String,
-    maxlength: 300
+    maxlength: 100
+  },
+  description_long: {
+    type: String,
+    maxlength: 400
   },
   price: {
     type: Number,
@@ -22,7 +25,7 @@ const productSchema = new mongoose.Schema({
   stock: {
     type: Number,
     require: true,
-    max: 100,
+    max: 10000,
     min: -1
   },
   date: {

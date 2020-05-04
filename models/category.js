@@ -18,10 +18,12 @@ const categorySchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  products: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product'
-  },
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -30,8 +32,12 @@ const categorySchema = new mongoose.Schema({
 
 categorySchema.set('toJSON', {
   transform: (document, returnedObject) => {
+    // console.log('returned object _id: ', returnedObject._id)
+    // console.log('returned object date: ', returnedObject.date)
+    // console.log('returned object ', returnedObject)
+    // console.log('document ', document)
     returnedObject.id = returnedObject._id.toString()
-    returnedObject.date = returnedObject.date.toString()
+    // returnedObject.date = returnedObject.date.toString()
     delete returnedObject._id
     delete returnedObject.__v
   }

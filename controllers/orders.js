@@ -31,6 +31,7 @@ ordersRouter.post('/', async (request, response, next) => {
   }
   const user = await User.findById(decodedToken.id)
 
+
   const order = new Order({
     name: body.name,
     state: body.state,
@@ -38,7 +39,7 @@ ordersRouter.post('/', async (request, response, next) => {
     delivery: body.delivery === undefined ? false : body.delivery,
     paid: body.paid === undefined ? false : body.paid,
     orders: body.orders,
-    user: user._id
+    // user: user._id
   })
 
   const savedOrder = await order.save()

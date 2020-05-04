@@ -15,8 +15,18 @@ const getTokenFrom = request => {
 // GET ALL CATEGORIES WITH WRITTEN OUT USER INFORMATION
 
 categoriesRouter.get('/', async (request, response) => {
+
+  const username = request.query.username
+
+  const user = await User.find({ username: username }).populate('categories', { name: 1 })
+
+  if (user.length === 0) {
+    return response.status(404).json({ error: 'This URL does not exist' })
+  }
+
   const categories = await Category
-    .find({}).populate('user', { username: 1, name: 1 })
+    .find({ 'user' : user[0]._id }).populate('user', { username: 1, name: 1 }).populate('products')
+
   response.json(categories.map(cat => cat.toJSON()))
 })
 
@@ -60,23 +70,38 @@ categoriesRouter.get('/:id', async (request, response) => {
 
 // DELETE CATEGORY WITH GIVEN ID
 
-categoriesRouter.delete('/:id', async (request, response) => {
-  await Category.findByIdAndRemove(request.params.id)
+categoriesRouter.delete('/', async (request, response, next) => {
+  const body = request.body
+
+  const token = getTokenFrom(request)
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+  if (!token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+
+  await Category.findByIdAndRemove(body.cat_id)
   response.status(204).end()
 })
 
 // UPDATE CATEGORY WITH GIVEN ID
 
-categoriesRouter.put('/:id', (request, response, next) => {
+categoriesRouter.put('/', (request, response, next) => {
   const body = request.body
+
+  console.log('Body of the request', body)
+
+  const token = getTokenFrom(request)
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+  if (!token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
 
   const category = {
     name: body.name,
-    hidden: body.hidden,
-    order: body.order
+    hidden: body.hidden
   }
 
-  Category.findByIdAndUpdate(request.params.id, category, { new: true })
+  Category.findByIdAndUpdate(body.id, category, { new: true })
     .then(updatedCat => {
       response.json(updatedCat.toJSON())
     })
