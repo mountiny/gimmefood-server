@@ -54,9 +54,9 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/*', (req, res) => {
   let url = path.join(__dirname+'/build/index.html')
   console.log('Url path: ', url)
-  if (!url.startsWith('/shrouded-atoll-37097/')) // we're on local windows
-    url = url.substring(1)
-  res.sendFile(url, { root: __dirname })
+  // if (!url.startsWith('/app/')) // we're on local windows
+  //   url = url.substring(1)
+  res.sendFile('/build/index.html', { root: __dirname })
 })
 
 app.use(middleware.unknownEndpoint)
