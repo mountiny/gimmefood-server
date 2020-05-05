@@ -50,10 +50,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use('/api/testing', testingRouter)
 }
 
-app.get('/*', function(req, res) {
-  res.sendFile('build/index.html')
-})
-
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
