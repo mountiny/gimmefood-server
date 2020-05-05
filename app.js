@@ -3,6 +3,7 @@ const express = require('express')
 require('express-async-errors')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 
 // Routers
 const notesRouter = require('./controllers/notes')
@@ -49,6 +50,13 @@ if (process.env.NODE_ENV === 'development') {
   const testingRouter = require('./controllers/testing')
   app.use('/api/testing', testingRouter)
 }
+
+app.get('/*', (req, res) => {
+  let url = path.join(__dirname, '../client/build', 'index.html')
+  if (!url.startsWith('/app/')) // we're on local windows
+    url = url.substring(1)
+  res.sendFile(url)
+})
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
