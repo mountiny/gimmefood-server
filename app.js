@@ -56,7 +56,7 @@ app.get('/*', (req, res) => {
   console.log('Url path: ', url)
   if (!url.startsWith('/shrouded-atoll-37097/')) // we're on local windows
     url = url.substring(1)
-  res.sendFile('https://shrouded-atoll-37097.herokuapp.com/build/index.html')
+  res.sendFile(url, { root: __dirname })
 })
 
 app.use(middleware.unknownEndpoint)
