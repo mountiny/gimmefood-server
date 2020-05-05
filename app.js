@@ -31,8 +31,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
   })
 
 app.use(cors())
-// app.use(express.static('build'))
-app.use(express.static(path.join(__dirname, '/build')))
+app.use(express.static('build'))
 app.use(express.json())
 app.use(helmet())
 app.use(middleware.requestLogger)
@@ -54,9 +53,10 @@ if (process.env.NODE_ENV === 'development') {
 
 app.get('/*', (req, res) => {
   let url = path.join(__dirname+'/build/index.html')
+  console.log('Url path: ', url)
   if (!url.startsWith('/shrouded-atoll-37097/')) // we're on local windows
     url = url.substring(1)
-  res.sendFile(url)
+  res.sendFile('https://shrouded-atoll-37097.herokuapp.com/build/index.html')
 })
 
 app.use(middleware.unknownEndpoint)
