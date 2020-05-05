@@ -21,7 +21,10 @@ const mongoose = require('mongoose')
 const helmet = require('helmet')
 
 logger.info('connecting to', config.MONGODB_URI)
-logger.info('SECRET at the beggining: ', config.SECRET)
+logger.info('PORT: ', process.env.PORT)
+logger.info('TEST mongo uri: ', process.env.TEST_MONGODB_URI)
+logger.info('sev mongo uri: ', process.env.DEV_MONGODB_URI)
+logger.info('secret: ', process.env.SECRET)
 logger.info('Sekred at the beggining: ', process.env.SEKRED)
 
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
