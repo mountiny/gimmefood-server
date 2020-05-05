@@ -4,6 +4,8 @@ let PORT = process.env.PORT
 let MONGODB_URI = process.env.MONGODB_URI
 let SECRET = process.env.SECRET
 
+console.log('Process environment secret: ', process.env.SECRET)
+
 if (process.env.NODE_ENV === 'test') {
   MONGODB_URI = process.env.TEST_MONGODB_URI
 } else if (process.env.NODE_ENV === 'development') {
