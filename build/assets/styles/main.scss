@@ -365,6 +365,37 @@ h4.category-heading {
       color: #777;
     }
   }
+  input#product_image {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  input#product_image + label {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    font-weight: 400;
+    padding: 8px $pad;
+    color: white;
+    background-color: $tColor;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+  input#product_image:focus + label,
+  input#product_image + label:hover {
+      background-color: $no;
+  }
+  input#product_image:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  input#product_image + label * {
+    pointer-events: none;
+  }
   textarea {
     -webkit-appearance: none;
     appearance: none;

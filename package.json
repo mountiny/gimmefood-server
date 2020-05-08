@@ -7,6 +7,7 @@
     "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development nodemon index.js",
     "build:ui": "rm -rf build && cd ../gimmefood && npm run build --prod && cp -r build ../gimmefood-server",
+    "build:dev:ui": "rm -rf build && cd ../gimmefood && npm run build:dev && cp -r build ../gimmefood-server",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
     "logs:prod": "heroku logs --tail",
@@ -27,8 +28,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9",
     "mongoose-unique-validator": "^2.0.3",
+    "multer": "^1.4.2",
     "prop-types": "^15.7.2",
-    "stripe": "^8.49.0"
+    "qs": "^6.9.4",
+    "stripe": "^8.49.0",
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

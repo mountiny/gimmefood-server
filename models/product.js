@@ -42,6 +42,9 @@ const productSchema = new mongoose.Schema({
   allergens: {
     type: [Number]
   },
+  image: {
+    type: String
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'

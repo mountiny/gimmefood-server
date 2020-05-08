@@ -24,6 +24,8 @@ categoriesRouter.get('/', async (request, response) => {
     return response.status(404).json({ error: 'This URL does not exist' })
   }
 
+  console.log('I am here in Category')
+
   const categories = await Category
     .find({ 'user' : user[0]._id }).populate('user', { username: 1, name: 1 }).populate('products')
 
@@ -98,7 +100,8 @@ categoriesRouter.put('/', (request, response, next) => {
 
   const category = {
     name: body.name,
-    hidden: body.hidden
+    hidden: body.hidden,
+    products: body.products.map((prod) => prod.id)
   }
 
   Category.findByIdAndUpdate(body.id, category, { new: true })

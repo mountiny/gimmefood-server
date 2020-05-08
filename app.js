@@ -4,7 +4,7 @@ require('express-async-errors')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-
+const bodyParser = require('body-parser')
 // Routers
 const notesRouter = require('./controllers/notes')
 const categoriesRouter = require('./controllers/categories')
@@ -21,11 +21,6 @@ const mongoose = require('mongoose')
 const helmet = require('helmet')
 
 logger.info('connecting to', config.MONGODB_URI)
-logger.info('PORT: ', process.env.PORT)
-logger.info('TEST mongo uri: ', process.env.TEST_MONGODB_URI)
-logger.info('sev mongo uri: ', process.env.DEV_MONGODB_URI)
-logger.info('secret: ', process.env.SECRET)
-logger.info('Sekred at the beggining: ', process.env.SEKRED)
 
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -35,9 +30,13 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     logger.error('error connection to MongoDB:', error.message)
   })
 
+
 app.use(cors())
 app.use(express.static('build'))
-app.use(express.json())
+app.use(express.static('public'))
+// app.use(express.json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(helmet())
 app.use(middleware.requestLogger)
 
