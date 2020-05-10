@@ -13,7 +13,7 @@
 
 html, body { 
   background-color: $bg;
-  color: $tColor;
+  color: $text;
   font-size: $base-font;
 
   // Lato
@@ -26,6 +26,9 @@ html, body {
   // font-family: 'Archivo', sans-serif;
 
 }
+.main-container {
+  overflow-x: hidden;
+}
 
 .container {
   width: 90%;
@@ -34,6 +37,7 @@ html, body {
   position: relative;
   letter-spacing: 1px;
   font-size: $normal;
+  
   @media screen and (max-width: $mobile-x) {
     width: auto;
     padding: 0 $pad;
@@ -75,26 +79,122 @@ html, body {
   width: calc(100% - $pad*2);
   font-size: 1.3rem;
   line-height: 1.7rem;
-  padding: $pad;
+  padding: $pad 0px;
   margin: 10px auto;
 }
 .collection-times {
   font-size: 1.3rem;
   line-height: 1.7rem;
-  padding: $pad;
+  padding: $pad 0px;
   margin: 10px auto;
+  position: relative;
+}
+.collection-location {
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  text-align: right;
+  position: relative;
+  a {
+    display: inline-block;
+    position: relative;
+    span {
+      z-index: 10;
+      position: relative;
+    }
+    &:hover {
+      &:after {
+        @include prefix(transform, translateX(-$pad/2))
+      }
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: white;
+      width: 116%;
+      height: 116%;
+      left: $pad;
+      right: 0px;
+      top: 4px;
+      bottom: 0px;
+      z-index: 1;
+      @include prefix(transition, (transform 0.3s $curve), webkit ms o);
+      @include prefix(transform, translateX(0px))
+    }
+  }
+}
+.business-header {
+  margin-top: 3*$pad;
+  width: 100%;
+  @include display_flexbox();
+  @include flex-direction(row);
+  @include justify-content(space-between);
+  @include align-items(flex-end);
+  // &:after {
+  //   content: '';
+  //   position: absolute;
+  //   background-color: white;
+  //   width: 100%;
+  //   height: 100px;
+  //   left: -$pad;
+  //   top: 0px;
+  //   z-index: -1;
+  // }
+  // place-: center;
+}
+.business-name__wrapper {
+  display: block;
+  position: relative;
+  // &:after {
+  //   content: '';
+  //   position: absolute;
+  //   background-color: white;
+  //   width: 100%;
+  //   height: 100%;
+  //   left: -$pad;
+  //   top: 0px;
+  //   bottom: 0px;
+  //   z-index: 1;
+  // }
+}
+
+.business-name {
+  display: block;
+  width: 100%;
+  position: relative;
+  font-size: 2.6rem;
+  line-height: 3.2rem;
+  z-index: 10;
 }
 .logo-wrapper {
-  width: 50%;
-  max-width: 300px;
+  width: 20%;
+  min-width: 70px;
+  max-width: 110px;
   position: relative;
-  margin: 20px auto;
+  // margin: 20px auto;
   display: block;
 }
+// .logo-wrapper {
+//   width: 50%;
+//   max-width: 300px;
+//   position: relative;
+//   margin: 20px auto;
+//   display: block;
+// }
 .logo {
   width: 100%;
   position: relative;
   display: block;
+}
+.business_subheading__wrapper {
+  position: relative;
+  display: block;
+}
+.business-subheading  {
+  display: block;
+  position: relative;
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  z-index: 10;
 }
 
 .intro-button {
@@ -107,20 +207,33 @@ h1 .welcome {
   font-size: 3rem;
 }
 .block {
-  min-height: 300px;
   width: 100%;
   position: relative;
   &.block__products {
     margin-bottom: 120px;
   }
 }
+.intro-block {
+  // height: auto;
+  // min-height: 100vh;
+  // max-height: 800px;
+}
+.block-heading__wrapper {
+  display: inline-block;
+
+}
 .block-heading {
-  padding: 20px 0px;
+  // padding: 20px 0px;
+  z-index: 10;
+  font-size: 2.6rem;
+  position: relative;
+  display: block;
 }
 
-h4.category-heading {
-  font-weight: 700;
-
+h4.category-name {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.4rem;
 }
 
 // Category
@@ -128,9 +241,10 @@ h4.category-heading {
   position: relative;
   display: block;
   width: 100%;
+  margin-top: 2*$pad;
 }
 
-.category-heading {
+.category-name {
   position: relative;
   margin: 10px 0px;
   text-transform: uppercase;
@@ -147,14 +261,20 @@ h4.category-heading {
 }
 
 .product-block {
+  width: 100%;
   min-height: 100px;
-  grid-template-columns: 20% auto 20%;
+  grid-template-columns: auto fit-content(80px) 20%;
   grid-template-rows: auto;
+  // grid-template-areas: 
+  //   "picture description price"
+  //   "picture description price"
+  //   "counter0 counter0 counter0";
   grid-template-areas: 
-    "picture description price"
-    "picture description price"
-    "counter0 counter0 counter0";
+  "description picture price"
+  "description picture price"
+  "counter0 counter0 counter0";
   column-gap: $pad;
+  // row-gap: $pad;
   // border: 2px transparent solid;
 
   @media screen and (max-width: $mobile-x) {
@@ -164,7 +284,7 @@ h4.category-heading {
   @media screen and (max-width: $mobile-se) {
     row-gap: $pad;
     padding: $pad*0.6;
-    grid-template-columns: 30% auto 20%;
+    grid-template-columns: fit-content(100px) auto 20%;
     grid-template-areas: 
     "picture description description"
     "price description description"
@@ -173,7 +293,8 @@ h4.category-heading {
   
 
   &.h-selected {
-    border: 2px $tColor solid;
+    border: 2px $productSelected solid;
+    row-gap: $pad;
     .product-counter__line {
       grid-template-columns: 40% auto 40%;
       grid-template-rows: auto;
@@ -182,12 +303,21 @@ h4.category-heading {
       background-color: $bg;
     }
   }
+
+  &.product-no-image {
+    grid-template-columns: auto 20%;
+    grid-template-areas: 
+      "description price"
+      "description price"
+      "counter0 counter0";
+  }
 }
 
 // Left Column
 .product-block__left {
   grid-area: picture;
   position: relative;
+  place-self: center;
   // max-height: 100%;
 
 }
@@ -209,7 +339,7 @@ h4.category-heading {
 }
 
 .product-name {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 2rem;
   padding-bottom: $pad;
 }
@@ -235,12 +365,12 @@ h4.category-heading {
 
 .product-price {
   @media screen and (max-width: $mobile-se) {
-    padding: 6px 0px;
+    padding: 8px 4px;
   }
 }
 .product-add {
   @media screen and (max-width: $mobile-se) {
-    padding: 6px 0px;
+    padding: 8px 4px;
   }
 }
 
@@ -279,7 +409,7 @@ h4.category-heading {
   background-color: $secondary;
   height: 40px;
   line-height: 40px;
-  margin-top: $pad;
+  // margin-top: $pad;
   font-size: 1.3rem;
   text-align: center;
   font-weight: 700;
@@ -292,7 +422,7 @@ h4.category-heading {
   margin-top: 30px;
   display: block;
   color: $bg;
-  background-color: $tColor;
+  background-color: $text;
   padding: 8px;
   width: fit-content;
   font-size: 1rem;
@@ -321,7 +451,7 @@ h4.category-heading {
   }
 
   &.h-selected {
-    border: 2px $tColor solid;
+    border: 2px $productSelected solid;
   }
 
   a {
@@ -357,8 +487,8 @@ h4.category-heading {
     position: relative;
     width: 100%;
     padding: $pad;
-    color: $tColor;
-    border: 2px solid $tHover;
+    color: $text;
+    border: 2px solid $textHover;
     background-color: $bg;
     font-size: 1.2rem;
     &::placeholder {
@@ -379,7 +509,7 @@ h4.category-heading {
     font-weight: 400;
     padding: 8px $pad;
     color: white;
-    background-color: $tColor;
+    background-color: $text;
     display: block;
     width: 100%;
     cursor: pointer;
@@ -404,8 +534,8 @@ h4.category-heading {
     width: 100%;
     height: 6*$pad;
     padding: $pad;
-    color: $tColor;
-    border: 2px solid $tHover;
+    color: $text;
+    border: 2px solid $textHover;
     background-color: $bg;
     font-size: 1.2rem;
     &::placeholder {
@@ -428,7 +558,7 @@ h4.category-heading {
 }
 .order-btn {
   position: relative;
-  background-color: $tColor;
+  background-color: $text;
   color: $bg;
   max-width: $cont-width;
   text-align: center;
@@ -448,12 +578,12 @@ h4.category-heading {
   z-index: 950;
   width: 100%;
   height: 120px;
-  // background-color: $tColor;
+  // background-color: $text;
   background-color: transparentize($bgLight, 0.8);
   z-index: 1000;
   -webkit-backdrop-filter: saturate(100%) blur(6px);
   backdrop-filter: saturate(100%) blur(6px);
-  color: $tColor;
+  color: $text;
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -483,8 +613,8 @@ h4.category-heading {
 .continue-btn {
   position: relative;
   // background-color: $bg;
-  // color: $tColor;
-  background-color: $tColor;
+  // color: $text;
+  background-color: $text;
   color: $bg;
   max-width: $cont-width;
   text-align: center;
@@ -496,7 +626,7 @@ h4.category-heading {
   width: calc(100% - 2*#{$pad});
   margin: $pad auto;
   &:hover {
-    background-color: $tHover;
+    background-color: $textHover;
   }
 }
 
@@ -512,11 +642,11 @@ h4.category-heading {
   @include align-items(center);
   a {
     font-weight: 700;
-    color: $tColor;
+    color: $text;
     text-decoration: none;
     @include prefix(transition, (color 0.3s $curve), webkit ms o);
     &:hover {
-      color: $tHover;
+      color: $textHover;
     }
   }
 }
@@ -558,16 +688,38 @@ h4.category-heading {
 .modal img {
   width: 90%;
   max-width: 400px;
-  max-height: 60%;
+  max-height: 50%;
   object-fit: contain;
   height: auto;
   margin: $pad auto;
 }
 .picture-modal__description {
   max-width: $cont-width;
-  display: block;
+  display: inline-block;
   width: calc(100% - 2*#{$pad});
   margin: $pad auto;
+}
+.picture-modal__name-wrapper {
+  position: relative;
+  display: inline-block;
+  width: calc(100% - 2*#{$pad});
+  margin: $pad auto;
+  max-width: $cont-width;
+}
+.picture-modal__name-cont {
+  position: relative;
+  display: inline-block;
+  // margin: 14px $pad;
+  // max-width: $cont-width;
+}
+.picture-modal__name {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  // font-style: italic;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  z-index: 100;
 }
 .picture-desctription__long {
   font-size: 1.3rem;

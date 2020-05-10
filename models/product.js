@@ -35,10 +35,6 @@ const productSchema = new mongoose.Schema({
   hidden: {
     type: Boolean
   },
-  order: {
-    type: Number,
-    required: true
-  },
   allergens: {
     type: [Number]
   },

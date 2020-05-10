@@ -8,8 +8,8 @@ $admin-height: 76px;
   z-index: 950;
   width: 100%;
   height: $admin-height;
-  // background-color: $tColor;
-  color: $tColor;
+  // background-color: $text;
+  color: $text;
   background-color: transparentize($bgLight, 0.8);
   z-index: 1000;
   -webkit-backdrop-filter: saturate(100%) blur(6px);
@@ -40,7 +40,7 @@ $admin-height: 76px;
   display: block;
   text-align: center;
   height: $admin-height;
-  // background-color: $tColor;
+  // background-color: $text;
   @include display_flexbox();
   @include flex_direction(column);
   @include justify-content(center);
@@ -82,7 +82,7 @@ $admin-height: 76px;
 .orders-filter {
   text-align: center;
   display: inline-block;
-  background-color: $tColor;
+  background-color: $text;
   color: $bg;
   height: 30px;
   line-height: 30px;
@@ -117,7 +117,7 @@ $admin-height: 76px;
   width: 100%;
 
   &:not(:first-of-type) {
-    border-top: 2px solid $tColor;
+    border-top: 2px solid $text;
     padding-top: $pad;
   }
   &:not(:last-of-type) {
@@ -149,7 +149,7 @@ $admin-height: 76px;
 }
 .order-customer__info {
   display: block;
-  color: $tColor;
+  color: $text;
   line-height: 1.4rem;
 }
 .order-date {
@@ -174,7 +174,7 @@ $admin-height: 76px;
 .order-customer__mobile {
   display: block;
   padding: 8px;
-  background-color: $tColor;
+  background-color: $text;
   color: $bg;
   text-decoration: none;
   font-size: 1rem;
@@ -183,7 +183,7 @@ $admin-height: 76px;
 .order-customer__email {
   display: block;
   padding: 8px;
-  background-color: $tColor;
+  background-color: $text;
   color: $bg;
   text-decoration: none;
   font-size: 1rem;
@@ -217,9 +217,6 @@ $admin-height: 76px;
 .admin-category__new {
   margin-top: 2*$pad
 }
-.admin-category__heading {
-  margin: $pad 0px;
-}
 .admin-block__close-wrapper {
   width: 100%;
   @include display_flexbox();
@@ -242,6 +239,9 @@ $admin-height: 76px;
   @include justify-content(space-between);
   @include align-items(center);
 }
+.admin-product__name {
+  line-height: 1.6rem;
+}
 .admin-products__cont {
   margin-bottom: $pad*2;
 }
@@ -262,6 +262,11 @@ $admin-height: 76px;
     display: none;
   }
 }
+.admin-profile__image {
+  max-width: 80px;
+  position: relative;
+  margin-right: $pad;
+}
 
 .admin-product__right {
 
@@ -274,8 +279,24 @@ $admin-height: 76px;
   @include display_flexbox();
   @include justify-content(space-between);
   @include align-items(center);
+  margin: $pad 0px;
+  @media screen and (max-width: $mobile-x) {
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    .category-heading__wrapper {
+      @include align-self(flex-start)
+    }
+    .admin-block__actions {
+      @include align-self(flex-end)
+    }
+  }
+}
 
-  
+.category-heading {
+  @media screen and (max-width: $mobile-x) {
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+  }
 }
 .admin-block__actions {
   @include display_flexbox();
@@ -285,34 +306,38 @@ $admin-height: 76px;
 
 .admin-action__btn {
   margin-left: $pad/2;
+  @media screen and (max-width: $mobile-x) {
+    margin-left: 4px;
+  }
 }
 .admin-menu__active-wrapper {
   position: relative;
   width: 100%;
   padding: 8px $pad;
+  margin-bottom: 2*$pad;
   // height: 50px;
   @include display_flexbox();
   @include justify-content(space-between);
   @include align-items(center);
   background-color: $bgLight;
-  color: $tColor;
+  color: $text;
   height: auto;
 }
 .admin-menu__indicator {
   width: 48%;
   background-color: $bgLight;
-  color: $tColor;
+  color: $text;
   height: auto;
   // padding: 8px $pad;
   @include prefix(transition, (border 0.3s $curve, height 0.3s $curve, background-color 0.3s $curve), webkit ms o);
   &.admin-active__selected {
-    background-color: $yes;//$bgLightHover;
+    background-color: $yes;//$bgHover;
     &:hover {
-      background-color: $yes;//$bgLightHover;
+      background-color: $yes;//$bgHover;
     }
   }
   &:hover {
-    background-color: $bgLightHover;
+    background-color: $bgHover;
   }
 }
 .admin-image__upload {
@@ -320,7 +345,7 @@ $admin-height: 76px;
   // @include justify-content(space-between);
   // @include align-items(center);
   display: grid;
-  grid-template-columns: 80% auto;
+  grid-template-columns: auto 70px;
   column-gap: $pad;
   &.admin-delete__option {
     grid-template-columns: 100%;
@@ -350,7 +375,10 @@ $admin-height: 76px;
   letter-spacing: 1px;
   font-size: 1.3rem;
   font-weight: 700;
-  
+}
+.admin-category__handle {
+  line-height: 3rem;
+  margin-right: $pad;
 }
 // .total-line {
 //   position: relative;
@@ -375,7 +403,7 @@ $admin-height: 76px;
 // .continue-btn {
 //   position: relative;
 //   background-color: $bg;
-//   color: $tColor;
+//   color: $text;
 //   max-width: 700px;
 //   text-align: center;
 //   text-transform: uppercase;

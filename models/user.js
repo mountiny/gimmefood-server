@@ -18,6 +18,20 @@ const userSchema = mongoose.Schema({
     unique: true,
     required: true
   },
+  image: {
+    type: String
+  },
+  subheading: {
+    type: String
+  },
+  shop_button: {
+    type: String
+  },
+  location: {
+    type: String
+  },
+  business_description: String,
+  takeout_description: String,
   verified: Boolean,
   activation_link: String,
   passwordHash: String,
@@ -47,6 +61,11 @@ userSchema.set('toJSON', {
     delete returnedObject._id
     delete returnedObject.__v
     delete returnedObject.passwordHash
+    delete returnedObject.verified
+    delete returnedObject.products
+    delete returnedObject.username
+    delete returnedObject.email
+    delete returnedObject.activation_link
   }
 })
 

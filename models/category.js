@@ -14,10 +14,6 @@ const categorySchema = new mongoose.Schema({
   hidden: {
     type: Boolean
   },
-  order: {
-    type: Number,
-    required: true
-  },
   products: [
     {
       type: mongoose.Schema.Types.ObjectId,

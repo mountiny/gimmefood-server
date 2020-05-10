@@ -103,7 +103,6 @@ productsRouter.post('/',uploadImage.single('image'), async (request, response, n
     stock: body.stock,
     date: new Date(),
     hidden: body.hidden === undefined ? false : body.hidden,
-    order: body.order,
     allergens: JSON.parse(body.allergens),
     image: image_path,
     category: category._id,
@@ -200,7 +199,6 @@ productsRouter.put('/',uploadImage.single('image'), async (request, response, ne
     price: body.price,
     stock: body.stock,
     hidden: body.hidden,
-    order: body.order,
     allergens: JSON.parse(body.allergens)
   }
 

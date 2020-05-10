@@ -1,7 +1,6 @@
 const categoriesRouter = require('express').Router()
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
-
 const Category = require('../models/category')
 
 const getTokenFrom = request => {
@@ -18,13 +17,11 @@ categoriesRouter.get('/', async (request, response) => {
 
   const username = request.query.username
 
-  const user = await User.find({ username: username }).populate('categories', { name: 1 })
+  const user = await User.find({ username: username }).populate('categories', { name: 1,  })
 
   if (user.length === 0) {
     return response.status(404).json({ error: 'This URL does not exist' })
   }
-
-  console.log('I am here in Category')
 
   const categories = await Category
     .find({ 'user' : user[0]._id }).populate('user', { username: 1, name: 1 }).populate('products')
@@ -48,12 +45,11 @@ categoriesRouter.post('/', async (request, response, next) => {
     name: body.name,
     hidden: body.hidden === undefined ? false : body.hidden,
     date: new Date(),
-    order: body.order,
     user: user._id
   })
 
   const savedCategory = await category.save()
-  user.categories = user.categories.concat(savedCategory._id)
+  user.categories = [savedCategory._id].concat(user.categories)//.concat(savedCategory._id)
   await user.save()
 
   response.json(savedCategory.toJSON())

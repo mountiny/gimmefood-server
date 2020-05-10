@@ -63,12 +63,12 @@
 }
 .h-button {
   display: block;
-  background-color: $tColor;
+  background-color: $text;
   color: $bg;
   cursor: pointer;
   @include prefix(transition, (background-color 0.3s $curve), webkit ms o);
   &:hover {
-    background-color: $tHover;
+    background-color: $textHover;
   }
 }
 .h-btn-padding {
@@ -76,7 +76,7 @@
 }
 .h-full-btn {
   position: relative;
-  background-color: $tColor;
+  background-color: $text;
   color: $bg;
   max-width: $cont-width;
   text-align: center;
@@ -89,12 +89,28 @@
   margin: $pad auto;
 
 }
+.h-offset-bg {
+  z-index: 10;
+  position: relative;
+  display: block;
+  &:after {
+    content: '';
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 80%;
+    left: -$pad;
+    top: $pad;
+    bottom: 0px;
+    z-index: 1;
+  }
+}
 
 .h-block {
   padding: $pad;
   display: grid;
   background-color: $bgLight;
-  color: $tColor;
+  color: $text;
   height: auto;
   overflow: hidden;
   position: relative;
@@ -102,10 +118,13 @@
   margin: 8px auto;
   @include prefix(transition, (border 0.3s $curve, height 0.3s $curve, background-color 0.3s $curve), webkit ms o);
   &:hover {
-    background-color: $bgLightHover;
+    background-color: $bgHover;
   }
   &.h-block-open:hover {
     background-color: $bgLight;
+  }
+  @media screen and (max-width: $mobile-x) {
+    padding: $pad $pad/2;
   }
   
 }
