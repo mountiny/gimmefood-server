@@ -49,6 +49,8 @@ usersRouter.get('/category-list', async (request, response) => {
       })
   }
 
+  console.log('User in category list: ', user)
+
   if (user.length === 0) {
     return response.status(404).json({ error: 'This URL does not exist' })
   }
