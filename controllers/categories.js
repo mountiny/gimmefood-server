@@ -49,10 +49,20 @@ categoriesRouter.post('/', async (request, response, next) => {
   })
 
   const savedCategory = await category.save()
-  user.categories = [savedCategory._id].concat(user.categories)//.concat(savedCategory._id)
-  await user.save()
 
-  response.json(savedCategory.toJSON())
+  const editedUser = {
+    categories: [savedCategory._id].concat(user.categories)
+  }
+
+  User.findByIdAndUpdate(decodedToken.id, editedUser, { new: true })
+    .then(updatedUser => {
+      response.json(updatedUser.toJSON())
+    })
+    .catch(error => next(error))
+  // user.categories = [savedCategory._id].concat(user.categories)//.concat(savedCategory._id)
+  // await user.save()
+
+  // response.json(savedCategory.toJSON())
 })
 
 // GET CATEGORY WITH SPECIFID ID
